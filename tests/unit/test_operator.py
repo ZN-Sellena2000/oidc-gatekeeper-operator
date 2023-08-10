@@ -81,7 +81,7 @@ def test_public_url_prepend_http(harness):
     pod_spec, _ = harness.get_pod_spec()
 
     assert (
-        pod_spec["containers"][0]["envConfig"]["OIDC_PROVIDER"] == "http://10.64.140.43.nip.io/dex"
+        pod_spec["containers"][0]["envConfig"]["OIDC_PROVIDER"] == "http://10.64.140.43.nip.io/keycloak"
     )
 
 
@@ -102,7 +102,7 @@ def test_public_url_keep_existing_protocol(harness):
 
     assert (
         pod_spec["containers"][0]["envConfig"]["OIDC_PROVIDER"]
-        == "https://10.64.140.43.nip.io/dex"
+        == "https://10.64.140.43.nip.io/keycloak"
     )
 
 
@@ -121,7 +121,7 @@ def test_skip_auth_url_config_has_value(harness):
 
     pod_spec, _ = harness.get_pod_spec()
 
-    assert pod_spec["containers"][0]["envConfig"]["SKIP_AUTH_URLS"] == "/dex/,/test/,/path1/"
+    assert pod_spec["containers"][0]["envConfig"]["SKIP_AUTH_URLS"] == "/keycloak/,/test/,/path1/"
 
 
 def test_skip_auth_url_config_is_empty(harness):
@@ -138,7 +138,7 @@ def test_skip_auth_url_config_is_empty(harness):
 
     pod_spec, _ = harness.get_pod_spec()
 
-    assert pod_spec["containers"][0]["envConfig"]["SKIP_AUTH_URLS"] == "/dex/"
+    assert pod_spec["containers"][0]["envConfig"]["SKIP_AUTH_URLS"] == "/keycloak/"
 
 
 def test_ca_bundle_config(harness):
